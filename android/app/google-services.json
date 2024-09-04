@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1080102377214",
+    "firebase_url": "https://proyek-akhir-9e65d-default-rtdb.firebaseio.com",
+    "project_id": "proyek-akhir-9e65d",
+    "storage_bucket": "proyek-akhir-9e65d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080102377214:android:6a5a04a3b3ce75cbde37af",
+        "android_client_info": {
+          "package_name": "com.example.flapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPXwEC5rdTHteogQ1CrClP4lsC2qcEUEk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
