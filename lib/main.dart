@@ -19,25 +19,78 @@ import 'package:rxdart/rxdart.dart';
 
 final _messageStreamController = BehaviorSubject<RemoteMessage>();
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  // Tangani pesan di latar belakang jika diperlukan
-  print('Handling a background message: ${message.messageId}');
-}
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   // Tangani pesan di latar belakang jika diperlukan
+//   print('Handling a background message: ${message.messageId}');
+// }
+
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//
+//   // Setup Firebase Messaging
+//   FirebaseMessaging messaging = FirebaseMessaging.instance;
+//
+//   // Tangani pesan saat aplikasi berada di latar belakang atau diterminasi
+//   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+//
+//   // Minta izin untuk notifikasi
+//   NotificationSettings settings = await messaging.requestPermission(
+//     alert: true,
+//     announcement: false,
+//     badge: true,
+//     carPlay: false,
+//     criticalAlert: false,
+//     provisional: false,
+//     sound: true,
+//   );
+//
+//   if (kDebugMode) {
+//     print('Permission granted: ${settings.authorizationStatus}');
+//   }
+//
+//   // Dapatkan token perangkat
+//   String? token = await messaging.getToken();
+//
+//   if (kDebugMode) {
+//     print('Registration Token=$token');
+//   }
+//
+//   // Tangani pesan saat aplikasi sedang berjalan (foreground)
+//   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+//     if (kDebugMode) {
+//       print('Handling a foreground message: ${message.messageId}');
+//       print('Message data: ${message.data}');
+//       print('Message notification: ${message.notification?.title}');
+//       print('Message notification: ${message.notification?.body}');
+//     }
+//
+//     _messageStreamController.sink.add(message);
+//   });
+//
+//   runApp(const MyApp());
+// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
 
   // Setup Firebase Messaging
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   // Tangani pesan saat aplikasi berada di latar belakang atau diterminasi
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   // Minta izin untuk notifikasi
   NotificationSettings settings = await messaging.requestPermission(
@@ -75,6 +128,7 @@ void main() async {
 
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
